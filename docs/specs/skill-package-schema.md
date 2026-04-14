@@ -103,8 +103,8 @@ metadata:
 
 | Tier | Meaning | Review Required | Example |
 |------|---------|-----------------|---------|
-| `standards` | Enforced org-wide. All agents must follow. Changes require review. | Yes | `verification-before-completion` |
-| `methodology` | Recommended workflows. Teams opt in. | Recommended | `brainstorming`, `test-driven-development` |
+| `standards` | Enforced org-wide. All agents must follow. Changes require review. | Yes | `verification-before-completion`, `test-driven-development` |
+| `methodology` | Recommended workflows. Teams opt in. | Recommended | `brainstorming`, `writing-plans` |
 | `personal` | Individual preferences and experiments. No review required. | No | Custom prompt tweaks |
 
 Full governance policy — including promotion, deprecation, archival, and review cadence — is defined in LAT-134.
@@ -181,6 +181,10 @@ Missing required files (`SKILL.md`, `README.md`) are **errors** — the package 
 | LAT-135 | Package structure for the self-improvement extraction loop |
 
 ## Changelog
+
+### 1.0.2 (2026-04-14)
+
+- Fixed tier examples: `test-driven-development` is `standards` (not `methodology`), per governance policy (LAT-134).
 
 ### 1.0.1 (2026-04-14)
 
