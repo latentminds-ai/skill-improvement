@@ -10,6 +10,10 @@ import { checkGrepPresent, checkGrepAbsent } from "./grep.js";
 import { checkHeuristic } from "./heuristic.js";
 import { checkHttp, checkHttpTiming } from "./http.js";
 import { checkJsonPath } from "./jsonPath.js";
+import { checkSkillFrontmatter } from "./skillFrontmatter.js";
+import { checkSkillDescriptionQuality } from "./skillDescriptionQuality.js";
+import { checkSkillStructure } from "./skillStructure.js";
+import { checkSkillContent } from "./skillContent.js";
 
 type CheckFn = (
   criterion: RubricCriterion,
@@ -28,6 +32,10 @@ const METHOD_MAP: Record<string, CheckFn> = {
   conditional: checkConditional,
   http: checkHttp,
   httpTiming: checkHttpTiming,
+  skillFrontmatter: checkSkillFrontmatter,
+  skillDescriptionQuality: checkSkillDescriptionQuality,
+  skillStructure: checkSkillStructure,
+  skillContent: checkSkillContent,
 };
 
 export async function evaluateCriterion(

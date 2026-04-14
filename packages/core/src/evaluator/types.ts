@@ -10,6 +10,10 @@ export const SUPPORTED_METHODS = [
   "httpTiming",
   "conditional",
   "llm-judge",
+  "skillFrontmatter",
+  "skillDescriptionQuality",
+  "skillStructure",
+  "skillContent",
 ] as const;
 
 export type SupportedMethod = (typeof SUPPORTED_METHODS)[number];

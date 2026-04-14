@@ -1,0 +1,75 @@
+{
+  "name": "Agent Readiness",
+  "version": "1.0.0",
+  "totalPoints": 30,
+  "tiers": [
+    {
+      "id": 0,
+      "name": "Package Structure",
+      "points": 4,
+      "criteria": [
+        { "id": "0.1", "name": "SKILL.md exists", "type": "deterministic", "method": "skillStructure", "require": ["SKILL.md"], "points": 1 },
+        { "id": "0.2", "name": "README.md exists", "type": "deterministic", "method": "skillStructure", "require": ["README.md"], "points": 1 },
+        { "id": "0.3", "name": "Valid frontmatter", "type": "deterministic", "method": "skillFrontmatter", "require": ["name", "description"], "points": 1 },
+        { "id": "0.4", "name": "Name matches directory", "type": "deterministic", "method": "skillFrontmatter", "require": ["name"], "checkNameMatch": true, "points": 1 }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Routing Quality",
+      "points": 6,
+      "criteria": [
+        { "id": "1.1", "name": "Description length", "type": "deterministic", "method": "skillDescriptionQuality", "check": "length", "minLength": 30, "maxLength": 1024, "points": 1 },
+        { "id": "1.2", "name": "Trigger keywords", "type": "deterministic", "method": "skillDescriptionQuality", "check": "triggerKeywords", "points": 2 },
+        { "id": "1.3", "name": "Specificity", "type": "deterministic", "method": "skillDescriptionQuality", "check": "specificity", "points": 2 },
+        { "id": "1.4", "name": "No vague language", "type": "deterministic", "method": "skillDescriptionQuality", "check": "noVague", "points": 1 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Governance Metadata",
+      "points": 5,
+      "criteria": [
+        { "id": "2.1", "name": "Tier declared", "type": "deterministic", "method": "skillFrontmatter", "require": ["metadata.tier"], "requireValues": { "metadata.tier": ["standards", "methodology", "personal"] }, "points": 2 },
+        { "id": "2.2", "name": "Owner declared", "type": "deterministic", "method": "skillFrontmatter", "require": ["metadata.owner"], "points": 1 },
+        { "id": "2.3", "name": "Platforms declared", "type": "deterministic", "method": "skillFrontmatter", "require": ["metadata.platforms"], "points": 2 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Output Contract",
+      "points": 5,
+      "criteria": [
+        { "id": "3.1", "name": "Output format defined", "type": "deterministic", "method": "skillContent", "check": "outputContract", "points": 2 },
+        { "id": "3.2", "name": "Section structure", "type": "deterministic", "method": "skillContent", "check": "sectionStructure", "minSections": 3, "points": 2 },
+        { "id": "3.3", "name": "Body has substantive content", "type": "deterministic", "method": "skillStructure", "require": ["SKILL.md"], "minSize": 500, "points": 1 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Edge-Case Handling",
+      "points": 5,
+      "criteria": [
+        { "id": "4.1", "name": "Failure modes documented", "type": "deterministic", "method": "skillContent", "check": "failureModes", "points": 3 },
+        { "id": "4.2", "name": "Guard rails present", "type": "deterministic", "method": "grepPresent", "pattern": "(MUST|REQUIRED|DO NOT|NEVER|ALWAYS)", "paths": ["SKILL.md"], "points": 2 }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Composability",
+      "points": 5,
+      "criteria": [
+        { "id": "5.1", "name": "Composability signals", "type": "deterministic", "method": "skillContent", "check": "composability", "points": 2 },
+        { "id": "5.2", "name": "Deterministic gates", "type": "deterministic", "method": "skillContent", "check": "deterministicGates", "points": 2 },
+        { "id": "5.3", "name": "References or scripts present", "type": "deterministic", "method": "skillStructure", "requireAny": ["references/", "scripts/"], "points": 1 }
+      ]
+    }
+  ],
+  "grading": {
+    "F": { "min": 0, "max": 5, "label": "Not agent-ready" },
+    "D": { "min": 6, "max": 12, "label": "Minimally functional" },
+    "C": { "min": 13, "max": 19, "label": "Usable" },
+    "B": { "min": 20, "max": 25, "label": "Well-structured" },
+    "A": { "min": 26, "max": 30, "label": "Agent-optimized" }
+  }
+}

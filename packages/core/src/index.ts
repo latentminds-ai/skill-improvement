@@ -36,3 +36,7 @@ export type {
 } from "./evaluator/types.js";
 
 export { SUPPORTED_METHODS } from "./evaluator/types.js";
+
+// Skill analysis utilities
+export { parseSkillFrontmatter, extractSkillBody } from "./evaluator/checks/skillFrontmatter.js";
+export type { ParsedFrontmatter } from "./evaluator/checks/skillFrontmatter.js";

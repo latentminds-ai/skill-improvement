@@ -17,6 +17,7 @@
     "test": "vitest run test"
   },
   "dependencies": {
-    "tinyglobby": "^0.2.15"
+    "tinyglobby": "^0.2.15",
+    "yaml": "^2.7.1"
   }
 }

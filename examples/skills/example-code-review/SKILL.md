@@ -49,3 +49,10 @@ Review code changes against a structured checklist before merging.
 
 ### Verdict: APPROVE | REQUEST CHANGES
 ```
+
+## Error Handling
+
+- If the diff is empty or the branch has no changes, report "No changes to review" and do NOT approve or reject
+- If `scripts/diff-summary.sh` fails, fall back to reading files directly
+- NEVER approve without reading the full diff
+- MUST check every item in the [review checklist](references/review-checklist.md) before issuing a verdict
