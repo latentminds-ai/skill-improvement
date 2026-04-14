@@ -20,9 +20,10 @@ my-skill/
 ├── references/           # Optional: detailed docs loaded on-demand by agents
 ├── scripts/              # Optional: helper scripts, executables
 ├── assets/               # Optional: templates, images, data files
-└── variants/             # Optional: platform-specific sidecar files (see LAT-133)
-    └── agents/
-        └── openai.yaml   # Codex UI metadata (follows existing Codex convention)
+└── variants/             # Optional: platform-specific overrides and sidecar files (see LAT-133)
+    └── codex/
+        └── agents/
+            └── openai.yaml   # Codex UI metadata (follows existing Codex convention)
 ```
 
 ### Required Files
@@ -39,7 +40,7 @@ my-skill/
 | `references/` | Detailed documentation loaded on-demand by agents (progressive disclosure) |
 | `scripts/` | Helper scripts and executables the skill invokes |
 | `assets/` | Templates, images, data files used by the skill |
-| `variants/` | Platform-specific sidecar files. Internal structure defined by LAT-133. |
+| `variants/` | Platform-specific SKILL.md overrides and sidecar files. Internal structure defined by LAT-133. |
 
 ## Metadata Model
 
@@ -157,7 +158,7 @@ Example diff:
 
 ### Skills with platform-specific files
 
-Skills like `shadcn` that already have `agents/openai.yaml` — move to `variants/agents/openai.yaml` when LAT-133 lands. The existing location continues to work until then.
+Skills like `shadcn` that already have `agents/openai.yaml` — move to `variants/codex/agents/openai.yaml` when LAT-133 lands. The existing location continues to work until then.
 
 ### Skills without SKILL.md
 
@@ -180,6 +181,10 @@ Missing required files (`SKILL.md`, `README.md`) are **errors** — the package 
 | LAT-135 | Package structure for the self-improvement extraction loop |
 
 ## Changelog
+
+### 1.0.1 (2026-04-14)
+
+- Fixed `variants/` path: `variants/codex/agents/openai.yaml` (platform-namespaced), not `variants/agents/openai.yaml`. Aligned with cross-platform-skill-packaging.md (LAT-133).
 
 ### 1.0.0 (2026-04-14)
 
