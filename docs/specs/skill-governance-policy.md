@@ -117,7 +117,7 @@ Mapping of current Latent Minds skills into the tier model.
 | `using-superpowers` | markus | Meta — skill discovery and usage |
 | `release-readiness` | markus | Workflow — release verification |
 
-### Personal (14 skills)
+### Personal (15 skills)
 
 | Skill | Owner | Rationale |
 |-------|-------|-----------|
