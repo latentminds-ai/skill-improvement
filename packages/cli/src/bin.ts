@@ -15,11 +15,34 @@ async function main() {
   if (command === "evaluate") {
     const projectPath = args[1];
     const rubricPath = args[2] ?? "rubric.json";
-    const scorecardPath = args[3] ?? "SCORECARD.md";
+    let scorecardPath = args[3] ?? undefined;
+    let outputDir = args[4] ?? undefined;
+
+    // Parse flags
+    for (let i = 5; i < args.length; i++) {
+      if (args[i] === "--output-dir" || args[i] === "-o") {
+        outputDir = args[++i];
+      }
+    }
 
     if (!projectPath) {
-      console.error("Usage: skill-improvement evaluate <project-path> [rubric-path] [scorecard-path]");
+      console.error("Usage: skill-improvement evaluate <project-path> [rubric-path] [scorecard-path] [output-dir]");
+      console.error("");
+      console.error("Arguments:");
+      console.error("  project-path    Path to the project to evaluate");
+      console.error("  rubric-path     Path to rubric JSON (default: rubric.json)");
+      console.error("  scorecard-path  Path for output scorecard (default: auto-generated)");
+      console.error("  output-dir      Output directory for scorecards (default: ./scorecards/<project-name>/)");
       process.exit(1);
+    }
+
+    // Auto-generate scorecard path if not provided
+    if (!scorecardPath) {
+      const projectName = projectPath.split("/").pop() || "project";
+      const defaultPath = outputDir 
+        ? `${outputDir}/${projectName}/scorecard.md`
+        : `scorecards/${projectName}/scorecard.md`;
+      scorecardPath = defaultPath;
     }
 
     await runEvaluate({ projectPath, rubricPath, scorecardPath });

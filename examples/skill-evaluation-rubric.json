@@ -1,0 +1,165 @@
+{
+  "name": "AI Agent Skill Evaluator",
+  "version": "1.0.0",
+  "totalPoints": 30,
+  "tiers": [
+    {
+      "id": 0,
+      "name": "Basic Structure",
+      "points": 6,
+      "criteria": [
+        {
+          "id": "0.1",
+          "name": "SKILL.md exists",
+          "type": "deterministic",
+          "method": "files",
+          "require": ["SKILL.md"],
+          "points": 2
+        },
+        {
+          "id": "0.2",
+          "name": "YAML frontmatter",
+          "type": "deterministic",
+          "method": "skillFrontmatter",
+          "require": ["name", "description"],
+          "points": 2
+        },
+        {
+          "id": "0.3",
+          "name": "Name matches directory",
+          "type": "deterministic",
+          "method": "skillFrontmatter",
+          "checkNameMatch": true,
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Content Quality",
+      "points": 8,
+      "criteria": [
+        {
+          "id": "1.1",
+          "name": "Output contract defined",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "outputContract",
+          "points": 2
+        },
+        {
+          "id": "1.2",
+          "name": "Failure modes documented",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "failureModes",
+          "points": 2
+        },
+        {
+          "id": "1.3",
+          "name": "Composability signals",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "composability",
+          "points": 2
+        },
+        {
+          "id": "1.4",
+          "name": "Section structure",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "sectionStructure",
+          "minSections": 3,
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Operational Readiness",
+      "points": 8,
+      "criteria": [
+        {
+          "id": "2.1",
+          "name": "Deterministic gates",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "deterministicGates",
+          "points": 3
+        },
+        {
+          "id": "2.2",
+          "name": "README.md present",
+          "type": "deterministic",
+          "method": "files",
+          "require": ["README.md"],
+          "minSize": 100,
+          "points": 2
+        },
+        {
+          "id": "2.3",
+          "name": "License defined",
+          "type": "deterministic",
+          "method": "skillFrontmatter",
+          "require": ["license"],
+          "points": 1
+        },
+        {
+          "id": "2.4",
+          "name": "Compatibility defined",
+          "type": "deterministic",
+          "method": "skillFrontmatter",
+          "require": ["compatibility"],
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Advanced Features",
+      "points": 8,
+      "criteria": [
+        {
+          "id": "3.1",
+          "name": "Examples provided",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "outputContract",
+          "points": 2
+        },
+        {
+          "id": "3.2",
+          "name": "When to Use section",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "sectionStructure",
+          "minSections": 1,
+          "points": 2
+        },
+        {
+          "id": "3.3",
+          "name": "References section",
+          "type": "deterministic",
+          "method": "skillContent",
+          "check": "composability",
+          "points": 2
+        },
+        {
+          "id": "3.4",
+          "name": "Scripts for verification",
+          "type": "deterministic",
+          "method": "files",
+          "requireAny": ["scripts/", "check.sh", "verify.sh"],
+          "points": 2
+        }
+      ]
+    }
+  ],
+  "grading": {
+    "F": { "min": 0, "max": 10, "label": "Incomplete" },
+    "D": { "min": 11, "max": 18, "label": "Basic" },
+    "C": { "min": 19, "max": 24, "label": "Good" },
+    "B": { "min": 25, "max": 28, "label": "Excellent" },
+    "A": { "min": 29, "max": 30, "label": "Perfect" }
+  }
+}
