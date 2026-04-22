@@ -1,37 +1,27 @@
-# example-code-review
+# Example Code Review
 
-Example skill demonstrating the canonical skill package schema defined in the [Skill Package Schema Specification](../../../docs/specs/skill-package-schema.md).
+A complete example of a workflow skill for systematic code reviews.
 
-**This is a reference implementation — not a production code review skill.**
+## Overview
 
-## What This Demonstrates
+This skill guides agents through a code review process:
 
-- Required files: `SKILL.md` with governed metadata, `README.md`
-- Optional directories: `references/`, `scripts/`
-- Governance metadata in the `metadata` frontmatter block
-- Relative path references from SKILL.md to bundled resources
+1. Analyze code changes systematically
+2. Check for common issues (security, performance, style)
+3. Provide actionable feedback
+4. Reference review patterns and checklists
 
-## Package Contents
+## Usage
 
-```
-example-code-review/
-├── SKILL.md                  # Agent instructions + governance metadata
-├── README.md                 # This file (human-facing docs)
-├── references/
-│   └── review-checklist.md   # Detailed checklist loaded on-demand
-└── scripts/
-    └── diff-summary.sh       # Helper script for reading diffs
-```
+Use when reviewing code changes or providing feedback on pull requests.
 
-## Metadata
+## Structure
 
-| Field | Value |
-|-------|-------|
-| Tier | methodology |
-| Owner | latentminds |
-| Platforms | pi, claude-code, codex |
-| Version | 1.0.0 |
-| Scope | project |
-| Status | active |
-| Reviewed | 2026-04-14 |
-| Author | latentminds |
+This example demonstrates:
+- `SKILL.md` — Step-by-step review instructions
+- `references/` — Review patterns and checklists
+- `scripts/` — Helper tools (`diff-summary.sh`)
+
+## Evaluation
+
+See [EVALUATION.md](EVALUATION.md) for test results (28/30, A grade).

@@ -161,6 +161,71 @@ The regex looks for patterns like `:3000`, `:5000`, `localhost` — simple, fast
 
 ---
 
+## Limitations & Caveats
+
+### Schema vs. Content Validation
+
+This tool validates **packaging structure** and **pattern presence**, not **actual content quality**.
+
+**What it catches reliably**:
+- ✅ Missing files (README.md, SKILL.md)
+- ✅ Missing metadata fields (tier, owner, platforms)
+- ✅ Missing patterns (keywords like "verify", "output", etc.)
+
+**What it can't assess**:
+- ❌ Whether content is actually clear or useful
+- ❌ Whether the skill works well in practice
+- ❌ Whether guidelines are well-written (vs. just present)
+
+### Why This Limitation Exists
+
+The rubric uses **heuristic proxies** for content quality:
+
+| Intended Check | Actual Check | Gap |
+|----------------|--------------|-----|
+| "Clear output contract" | Contains "output" or "format" keyword? | Skill could have the keyword but be confusing |
+| "Good error handling" | Contains "error", "fail", "fallback"? | Could mention errors without proper handling |
+| "Composable" | References other skills? | Could reference without clear handoff |
+
+### Impact on Different Skill Types
+
+**Workflow/Action Skills** (e.g., `test-driven-development`, `writing-plans`):
+- ✅ Rubric works well — these skills have concrete outputs
+- ✅ Output contracts, references, and verification gates make sense
+
+**Guideline/Mindset Skills** (e.g., `karpathy-guidelines`, `brainstorming`):
+- ⚠️ Rubric is less applicable — these provide principles, not outputs
+- ⚠️ May penalize for "missing output contract" when none is expected
+- ⚠️ Score reflects packaging quality, not guideline quality
+
+### Example: Karpathy Guidelines
+
+When evaluated against the default skill rubric:
+
+```
+✅ Basic Structure: 6/6
+✅ Agent Readiness: 8/8
+⚠️ Content Quality: 4/10  ← Penalized for "no output contract"
+✅ Verification Gates: 6/6
+
+Total: 24/30 (B grade)
+```
+
+The skill is **excellent content-wise** but gets penalized for not having an output contract section — because the rubric assumes all skills produce specific outputs.
+
+### Open Questions for Improvement
+
+1. **Skill-type aware rubrics** — Should guideline skills have different criteria than workflow skills?
+2. **Rubric templates** — Should we provide different rubrics for different skill categories?
+3. **Manual override** — Should rubric authors be able to disable certain checks for specific skill types?
+4. **Content quality proxies** — Are there better heuristics than keyword matching for assessing actual content quality?
+5. **Hybrid approach** — Could we use LLMs selectively (e.g., for final quality gate) while keeping heuristics for CI?
+6. **Autoresearch evaluation** — Could an autoresearch system compare actual outputs across sessions to assess skill effectiveness empirically?
+
+See the [docs/specs/README.md](docs/specs/README.md) for related specifications on skill governance and evaluation.
+
+---
+
 ## Creating Custom Rubrics
 
 ### Basic Structure
